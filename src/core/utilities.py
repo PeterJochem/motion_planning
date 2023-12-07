@@ -62,7 +62,7 @@ def random_joint_angles(robot: RobotConfig, num_samples: int) -> torch.Tensor:
             N x (robot's degrees of freedom) tensor. N sets of joint angles.
     """
     kinematic_model = CudaRobotModel(robot.kinematics)
-    return torch.rand((num_samples, kinematic_model.get_dof()), **vars(robot.tensor_args))
+    return (torch.rand((num_samples, kinematic_model.get_dof()), **vars(robot.tensor_args)) * 3.14)
 
 
 def test(robot):
